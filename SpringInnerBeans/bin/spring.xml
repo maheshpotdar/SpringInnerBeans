@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- Employee <==> car && two wheeler ahe. -->
+	<!-- Manager <==> car ahe. -->
+
+	<!-- Car car. Object manaje property ref kiva autowiring. -->
+
+	<!-- Car saglyana pahije baher asude . pan two wheeler fakt employee kade 
+		ahe.employee cha inner bean. -->
+
+
+	<bean id="c1" class="com.mahesh.model.Car">
+		<property name="carname" value="Renault Duster" />
+	</bean>
+
+	<!-- Twowheeler fakt employee kade. so INNER BEAN. -->
+
+	<bean id="e1" class="com.mahesh.model.Employee">
+		<property name="empname" value="Mahesh Potdar" />
+		<property name="car" ref="c1" />
+		<property name="twoWheeler">
+			<bean class="com.mahesh.model.TwoWheeler">
+				<property name="nameof2Wheeler" value="Bajaj Pulsar" />
+				<property name="avg" value="92" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="m1" class="com.mahesh.model.Manager">
+		<property name="car" ref="c1" />
+	</bean>
+
+	<!-- Innner bean outside la access nasato. -->
+
+	<bean id="p1" class="com.mahesh.model.Person">
+		<property name="employee" ref="empa" />
+		<property name="manager" ref="mana" />
+		<property name="car" ref="cara" />
+	</bean>
+
+	<alias name="e1" alias="empa" />
+	<alias name="m1" alias="mana" />
+	<alias name="c1" alias="cara" />
+
+</beans>          
